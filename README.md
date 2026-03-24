@@ -2,21 +2,28 @@
 
 # Install skills for claude code
 ```bash
-SKILL_NAME=<skill_name>
-git clone --filter=blob:none --sparse https://github.com/hymaia/hymaclaudeskills.git
-cd hymaclaudeskills
-git sparse-checkout set pptx-hymaia
-mv pptx-hymaia/$SKILL_NAME ~/.claude/skills/$SKILL_NAME
+curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/main/install_skill.sh | SKILL_NAME=<skill_name> bash
 ```
 
-example: 
+**Example** (`pptx-hymaia`):
+
 ```bash
-SKILL_NAME=pptx-hymaia
-git clone --filter=blob:none --sparse https://github.com/hymaia/hymaclaudeskills.git
-cd hymaclaudeskills
-git sparse-checkout set pptx-hymaia
-mv pptx-hymaia/$SKILL_NAME ~/.claude/skills/$SKILL_NAME
+curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/main/install_skill.sh | SKILL_NAME=pptx-hymaia bash
 ```
+
+**Using `install_skill.sh` locally:** from the directory that contains the script, run:
+
+```bash
+SKILL_NAME=pptx-hymaia bash ./install_skill.sh
+```
+
+If `~/.claude/skills/<name>` already exists, the script asks whether to replace it. Non-interactive override: `INSTALL_SKILL_REPLACE=1`. Use the real path to the script if you are elsewhere (not a literal `path/to`).
+
+**If you see errors:**
+
+- **`bash install_skill.sh` and you get both** `destination path 'hymaclaudeskills' already exists` **and** `mv: ... pptx-hymaia/pptx-hymaia` — The `install_skill.sh` in your current directory is **out of date**. The current script never clones into `./hymaclaudeskills` in the cwd. Copy `install_skill.sh` from this repo over yours, push it to `hymaia/hymaclaudeskills` on GitHub if needed, or run the known-good file by full path (e.g. `SKILL_NAME=pptx-hymaia bash /path/to/anthropic-skills/skills/install_skill.sh`).
+- `destination path 'hymaclaudeskills' already exists` (manual `git clone`) — Remove the existing folder, clone elsewhere, or use the current `install_skill.sh` (temp-dir clone).
+- `mv: ... pptx-hymaia/pptx-hymaia` — Old install instructions; use `mv "$SKILL_NAME" ~/.claude/skills/` or the current script.
 
 
 
