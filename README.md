@@ -2,13 +2,15 @@
 
 # Install skills for claude code
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/main/install_skill.sh | SKILL_NAME=<skill_name> bash
+curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/refs/heads/main/install_skill.sh \
+  | SKILL_NAME=<skill-name> INSTALL_SKILL_REPLACE=1 bash
 ```
 
 **Example** (`pptx-hymaia`):
 
 ```bash
-curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/main/install_skill.sh | SKILL_NAME=pptx-hymaia bash
+curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/refs/heads/main/install_skill.sh \
+  | SKILL_NAME=pptx-hymaia INSTALL_SKILL_REPLACE=1 bash
 ```
 
 **Using `install_skill.sh` locally:** from the directory that contains the script, run:
@@ -17,7 +19,7 @@ curl -fsSL https://raw.githubusercontent.com/hymaia/hymaclaudeskills/main/instal
 SKILL_NAME=pptx-hymaia bash ./install_skill.sh
 ```
 
-If `~/.claude/skills/<name>` already exists, the script asks whether to replace it. Non-interactive override: `INSTALL_SKILL_REPLACE=1`. Use the real path to the script if you are elsewhere (not a literal `path/to`).
+If `~/.claude/skills/<name>` already exists, the script asks whether to replace it. Non-interactive override: `INSTALL_SKILL_REPLACE=1`. The script picks `skills/<name>` in the repo when present, otherwise `<name>` at the repo root. To force a path, set `SKILL_ROOT_IN_REPO` (empty = root only). Use the real path to the script if you are elsewhere (not a literal `path/to`).
 
 **If you see errors:**
 
