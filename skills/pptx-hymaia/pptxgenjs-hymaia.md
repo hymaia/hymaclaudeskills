@@ -553,7 +553,7 @@ sl.addImage({
 
 ## Brand-Specific Pitfalls
 
-These extend the pitfalls in [pptxgenjs.md](pptxgenjs.md#common-pitfalls).
+These extend the pitfalls in [pptxgenjs-hymaia.md](pptxgenjs-hymaia.md#common-pitfalls).
 All pitfalls from the generic file still apply — read it too.
 
 1. **LIME on WHITE fails contrast** — always use `LIME_DK` (`9ABF00`) for lime text on
@@ -624,8 +624,8 @@ async function buildDeck() {
     ],
   });
 
-  await pres.writeFile({ fileName: "hymaia-audit.pptx" });
-  console.log("Done → hymaia-audit.pptx");
+  await pres.writeFile({ fileName: "hymaia-presentation.pptx" });
+  console.log("Done → hymaia-presentation.pptx");
 }
 
 buildDeck().catch(console.error);
@@ -657,4 +657,4 @@ buildDeck().catch(console.error);
 | Oval | `pres.shapes.OVAL` |
 | Line | `pres.shapes.LINE` |
 
-> For dimensions, charts, images, slide masters, and full API — see [pptxgenjs.md](pptxgenjs.md).
+
